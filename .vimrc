@@ -3,7 +3,6 @@ syntax enable
 " main shortcuts
 inoremap <silent> jj <ESC>
 let mapleader = "\<Space>"
-"let g:molokai_original = 1
 colorscheme molokai
 set t_Co=256
 
@@ -29,6 +28,7 @@ set showcmd
 
 " search
 set hlsearch
+nnoremap <ESC>h :nohl<CR>
 set incsearch
 set ignorecase
 set smartcase
@@ -62,17 +62,42 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'luochen1990/rainbow'
 Plug 'reireias/vim-cheatsheet'
 Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+" surround.vim
+" vim-indent-guides
+" vim-fugitive
+" tcommennt
+" (snippet)
+" Add NERDTree shoutcut
+" easymotion
+" (zsh)
+" (tmux)
 call plug#end()
 
+" rainbow bracket
 let g:rainbow_active = 1
 
 " autocomplete
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-let g:lsp_diagnostics_enabled = 1
 
 " vim-lsp
-nnoremap <Leader>d :<C-u>LspDefinition<CR>
-nnoremap <Leader>r :<C-u>LspRename<CR>
-nnoremap <Leader>k :<C-u>LspHover<CR>
+nnoremap <silent> <Leader>d :<C-u>LspDefinition<CR>
+nnoremap <silent> <Leader>r :<C-u>LspRename<CR>
+nnoremap <silent> <Leader>k :<C-u>LspHover<CR>
+nnoremap <silent> <Leader>f :<C-u>LspDocumentFormat<CR>
+nnoremap <silent> <Leader>en :<C-u>LspNextError<CR>
+nnoremap <silent> <Leader>n :<C-u>LspNextError<CR>
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+let g:lsp_textprop_enabled = 1
+" TODO: 重ならないと何故か表示されない
+highlight LspErrorHighlight term=reverse ctermfg=219 ctermbg=89 guifg=#E6DB74 guibg=#1E0010
+highlight LspWarningHighlight term=underline cterm=underline gui=underline
+highlight LspInformationHighlight term=underline cterm=underline gui=underline
+highlight LspHintHighlight term=underline cterm=underline gui=underline
