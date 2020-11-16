@@ -91,8 +91,8 @@ nnoremap <silent> <Leader>en :<C-u>LspNextError<CR>
 nnoremap <silent> <Leader>n :<C-u>LspNextError<CR>
 
 let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_error = {'text': 'E'}
+let g:lsp_signs_warning = {'text': 'W'}
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 let g:lsp_textprop_enabled = 1
