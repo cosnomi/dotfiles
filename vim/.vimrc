@@ -82,22 +82,29 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
+" NERDTree
+nnoremap <silent> <Leader>a :NERDTreeToggle<CR>
+
+" -------
 " vim-lsp
+" -------
 nnoremap <silent> <Leader>d :<C-u>LspDefinition<CR>
 nnoremap <silent> <Leader>r :<C-u>LspRename<CR>
 nnoremap <silent> <Leader>k :<C-u>LspHover<CR>
 nnoremap <silent> <Leader>f :<C-u>LspDocumentFormat<CR>
 nnoremap <silent> <Leader>en :<C-u>LspNextError<CR>
-nnoremap <silent> <Leader>n :<C-u>LspNextError<CR>
 
+" vim-lsp diagnostics
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_error = {'text': 'E'}
 let g:lsp_signs_warning = {'text': 'W'}
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 let g:lsp_textprop_enabled = 1
-" TODO: 重ならないと何故か表示されない
+
 highlight LspErrorHighlight term=reverse ctermfg=219 ctermbg=89 guifg=#E6DB74 guibg=#1E0010
 highlight LspWarningHighlight term=underline cterm=underline gui=underline
 highlight LspInformationHighlight term=underline cterm=underline gui=underline
 highlight LspHintHighlight term=underline cterm=underline gui=underline
+
+let g:lsp_settings = {'typescript-language-server':{'whitelist': ['typescript', 'typescriptreact']}}
