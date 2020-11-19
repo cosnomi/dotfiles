@@ -8,3 +8,4 @@ apt install -y curl git vim > /dev/null
 
 $THISPATH/fish/initialize.sh
 $THISPATH/vim/initialize.sh
+$THISPATH/git/initialize.sh
