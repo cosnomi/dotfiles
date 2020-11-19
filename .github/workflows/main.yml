@@ -1,0 +1,13 @@
+name: install-test
+
+on: [push]
+
+jobs:
+    main:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: deploy dotfiles
+              run: bash deploy.sh
+            - name: initialize
+              run: bash initialize.sh
