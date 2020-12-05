@@ -4,14 +4,10 @@
 [core]
     editor = vim -c \"set fenc=utf-8\"
     quotepath = false
+    excludesfile = ~/.gitignore_global
 [alias]
-    st = status
-    # dh = diff HEAD
-    dw = diff --word-diff
     co = checkout
-    # branch or tag only graph
-    bg = log --graph --simplify-by-decoration --pretty=format:'%d' --all
     cancel = reset --soft HEAD^
+    unstage = reset HEAD
     empty = commit --allow-empty
     amend = commit --amend
-    unstage = reset HEAD

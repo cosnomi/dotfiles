@@ -4,3 +4,4 @@ cd $THISPATH
 $THISPATH/vim/deploy.sh
 $THISPATH/fish/deploy.sh
 $THISPATH/git/deploy.sh
+$THISPATH/tmux/deploy.sh

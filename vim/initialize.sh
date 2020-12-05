@@ -1,6 +1,8 @@
 THISPATH=$(cd $(dirname $0); pwd)
 cd $THISPATH
 
+echo "Initializing vim"
+
 # Color themes
 echo "Downloading vim color themes"
 mkdir ~/.vim/colors -p

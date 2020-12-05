@@ -1,0 +1,6 @@
+git
+curl
+libncurses5-dev
+tmux
+fish
+silversearcher-ag
