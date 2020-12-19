@@ -1,17 +1,9 @@
 set -g theme_display_git_master_branch no
-set -g theme_color_scheme dracula
 set -g theme_display_date no
 set -g theme_display_cmd_duration no
 
 set -x EDITOR vim
 
-
 # alias
-
-function cd
-  builtin cd $argv
-  ls
-end
-
-
-
+# abbr vim nvim
+abbr tat tmux a -t
