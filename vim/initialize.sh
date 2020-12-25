@@ -3,14 +3,25 @@ cd $THISPATH
 
 echo "Initializing vim"
 
-# Color themes
-echo "Downloading vim color themes"
-mkdir ~/.vim/colors -p
-curl -fLo ~/.vim/colors/molokai.vim \
-    https://raw.githubusercontent.com/tomasr/molokai/c67bdfcdb31415aa0ade7f8c003261700a885476/colors/molokai.vim >/dev/null
+# Install nvim
+echo "Setting up neovim"
+mkdir -p $HOME/AppImage
+cd $HOME/AppImage
+wget "https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage"
+chmod a+x nvim.appimage
+mkdir ~/bin
+ln -snf $HOME/AppImage/nvim.appimage ~/bin/nvim 
+echo "Symlink to nvim appimage was created. If the system does not deal with AppImage properly, further action may be needed to run neovim."
 
 # Vim plugins
-echo "Setting up vim plugins"
+echo "Setting up vim-plug"
+
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim >/dev/null
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+echo "Installing plugins. Please wait..."
 vim +'PlugInstall --sync' +qa
+nvim +'PlugInstall --sync' +qa
