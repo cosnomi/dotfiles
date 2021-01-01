@@ -27,7 +27,8 @@ Plug 'tpope/vim-repeat' " allow repeat plugin commands
 
 Plug 'tomtom/tcomment_vim' " gcc to toggle comment
 Plug 'lambdalisue/fern.vim' " file
-Plug 'LumaKernel/fern-mapping-fzf.vim'
+Plug 'LumaKernel/fern-mapping-fzf.vim' " ff for fzf search
+Plug 'lambdalisue/fern-hijack.vim' " hijack netrw
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -54,7 +55,6 @@ call plug#end()
 "##########
 " color scheme
 "##########
-set bg=dark
 set t_Co=256
 colorscheme iceberg
 

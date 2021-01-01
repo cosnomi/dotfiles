@@ -7,6 +7,7 @@ set -x EDITOR nvim
 set GOPATH ~/go
 set PATH $GOPATH/bin $PATH
 
+set -x GPG_TTY (tty)
 
 # alias
 abbr vim nvim

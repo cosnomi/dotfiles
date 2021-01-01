@@ -162,6 +162,63 @@ if executable('html-languageserver')
   augroup END
 endif
 
+" vls
+if executable('vls')
+  augroup LspVue
+    let g:vim_lsp_settings_vls_config = {
+    \   'vetur': {
+    \     'useWorkspaceDependencies': v:false,
+    \     'validation': {
+    \       'template': v:true,
+    \       'style': v:true,
+    \       'script': v:true
+    \     },
+    \     'completion': {
+    \       'autoImport': v:true,
+    \       'useScaffoldSnippets': v:true,
+    \       'tagCasing': 'kebab'
+    \     },
+    \     'format': {
+    \       'enable': v:true,
+    \       'options': {},
+    \       'defaultFormatter': {
+    \         'js': '',
+    \         'ts': ''
+    \       },
+    \       'defaultFormatterOptions': {},
+    \       'scriptInitialIndent': v:false,
+    \       'styleInitialIndent': v:false
+    \     },
+    \     'dev': {
+    \       'logLevel': 'DEBUG'
+    \     }
+    \   },
+    \   'css': {},
+    \   'html': {
+    \     'suggest': {}
+    \   },
+    \   'javascript': {
+    \     'format': {}
+    \   },
+    \   'typescript': {
+    \     'format': {}
+    \   },
+    \   'emmet': {},
+    \   'stylusSupremacy': {}
+    \ }
+
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'vls',
+    \ 'cmd': {server_info->['vls']},
+    \ 'root_uri':{server_info->FindRootDirectory()},
+    \ 'initialization_options': {'config': g:vim_lsp_settings_vls_config },
+    \ 'allowlist': ['vue'],
+    \ 'workspace_config': g:vim_lsp_settings_vls_config,
+    \ })
+  augroup END
+endif
+
 " CSS (and scss)
 " npm install -g vscode-css-languageserver-bin
 "if executable('css-languageserver')

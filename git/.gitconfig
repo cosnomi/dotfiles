@@ -2,7 +2,7 @@
     name = cosnomi
     email = cosnomi@cosnomi.com
     # depends on device
-    # signingkey = XXXXXXXXXXXXXXXXXX
+    signingkey = 8C9EBE9F7B2899DE
 [core]
     editor = nvim
     quotepath = false
@@ -16,5 +16,6 @@
     ts = tag -s
     empty = commit --allow-empty
     amend = commit --amend
+    forcepush = push --force-with-lease
 [gpg]
   	program = gpg
