@@ -1,7 +1,6 @@
 [user]
     name = cosnomi
     email = cosnomi@cosnomi.com
-    # depends on device
     signingkey = 8C9EBE9F7B2899DE
 [core]
     editor = nvim
@@ -11,9 +10,12 @@
     co = checkout
     cancel = reset --soft HEAD^
     unstage = reset HEAD
+
     cm = commit
+    cma = commit -a
     cs = commit -S
     ts = tag -s
+
     empty = commit --allow-empty
     amend = commit --amend
     forcepush = push --force-with-lease
