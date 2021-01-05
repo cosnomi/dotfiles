@@ -24,3 +24,7 @@ abbr vimrc nvim ~/.config/nvim/init.vim
 abbr .. cd ..
 abbr ..2 cd ../..
 abbr ..3 cd ../../..
+
+# Change tmux prefix to avoid conflict in case of nested tmux
+alias tmux-chkey='tmux set-option -ag prefix C-b'
+alias tmux-revkey='tmux set-option -ag prefix C-s'
