@@ -135,7 +135,7 @@ nnoremap <silent> <Leader>eN :<C-u>LspPreviousError<CR>
 " l: diagnostics
 nnoremap <silent> <Leader>ln :<C-u>LspNextDiagnostic<CR>
 nnoremap <silent> <Leader>lN :<C-u>LspPreviousDiagnostic<CR>
-nnoremap <silent> <Leader>l :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent> <Leader>ll :<C-u>LspDocumentDiagnostics<CR>
 
 " diagnostics
 let g:lsp_diagnostics_enabled = 1
@@ -161,5 +161,5 @@ highlight LspHintHighlight term=underline ctermfg=255 ctermbg=6
 " highlight clear LspInformationLine
 " highlight clear LspHintLine
 
-let g:lsp_log_verbose = 1
+let g:lsp_log_verbose = 0
 let g:lsp_log_file = expand('~/vim-lsp.log')
