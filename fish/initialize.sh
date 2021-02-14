@@ -11,3 +11,4 @@ apt-get install fish -y
 # Do not chsh
 
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish >/dev/null
+# fisher update
