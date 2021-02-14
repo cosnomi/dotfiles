@@ -104,16 +104,19 @@ map g# <Plug>(asterisk-gz#)
 let g:lightline = {}
 let g:lightline.colorscheme = 'iceberg'
 
-" git
-nnoremap <Leader>gd :<C-u>Git diff<CR>
-nnoremap <Leader>gb :<C-u>Git blame<CR>
-nnoremap <Leader>ggt :<C-u>GitGutterToggle<CR>
-nmap <Leader>gn <Plug>(GitGutterNextHunk)
-nmap <Leader>gN <Plug>(GitGutterPrevHunk)
-nmap <Leader>ghs <Plug>(GitGutterStageHunk)
-nmap <Leader>ghu <Plug>(GitGutterUnstageHunk)
-nmap <Leader>ghp <Plug>(GitGutterPreviewHunk)
-nmap <Leader>ghf <Plug>(GitGutterFold)
+" vim-fugitive (git)
+nnoremap <Leader>gd :<C-u>Gdiff<CR>
+nnoremap <Leader>gb :<C-u>Gblame<CR>
+nnoremap <Leader>gs :<C-u>Gstatus<CR>
+
+" gitgutter
+nmap <Leader>hn <Plug>(GitGutterNextHunk)
+nmap <Leader>hN <Plug>(GitGutterPrevHunk)
+nmap <Leader>hs <Plug>(GitGutterStageHunk)
+nmap <Leader>hU <Plug>(GitGutterUnstageHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " -------
 " vim-lsp
