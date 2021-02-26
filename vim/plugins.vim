@@ -108,6 +108,10 @@ let g:lightline.colorscheme = 'iceberg'
 nnoremap <Leader>gd :<C-u>Gdiff<CR>
 nnoremap <Leader>gb :<C-u>Gblame<CR>
 nnoremap <Leader>gs :<C-u>Gstatus<CR>
+" Unmap s so as not to interfere with window keymap
+" https://github.com/tpope/vim-fugitive/issues/761
+let g:nremap = {"s": "q"}
+
 
 " gitgutter
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
