@@ -32,8 +32,8 @@ nnoremap s> 5<C-w>>
 nnoremap s< 5<C-w><
 nnoremap s= 5<C-w>=
 
-nnoremap ss :<C-u>sp<CR><C-w>j
-nnoremap sv :<C-u>vs<CR><C-w>l
+nnoremap ss :sp<CR><C-w>j
+nnoremap sv :vs<CR><C-w>l
 
 
 " visual mode
@@ -47,3 +47,6 @@ set updatetime=1000
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap s <Nop>
+
+" Escape from Leader prefix
+nnoremap <silent> <Leader>jj <Nop>

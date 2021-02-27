@@ -78,6 +78,7 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " fern
 nnoremap <silent> <Leader>a :Fern . -reveal=% <CR>
 function! s:init_fern() abort
+  nmap <buffer> s <Nop>
 endfunction
 augroup fern-custom
   autocmd! *
@@ -104,45 +105,59 @@ map g# <Plug>(asterisk-gz#)
 let g:lightline = {}
 let g:lightline.colorscheme = 'iceberg'
 
+" fzf
+nnoremap <Leader>zf :Files<CR>
+nnoremap <Leader>zg :Ag<CR>
+nnoremap <Leader>zm :Marks<CR>
+nnoremap <Leader>zp :Snippets<CR>
+
 " vim-fugitive (git)
-nnoremap <Leader>gd :<C-u>Gdiff<CR>
-nnoremap <Leader>gb :<C-u>Gblame<CR>
-nnoremap <Leader>gs :<C-u>Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gm :Gmerge<CR>
+nnoremap <Leader>gh :0Gllog<CR>
+
 " Unmap s so as not to interfere with window keymap
-" https://github.com/tpope/vim-fugitive/issues/761
+" See: https://github.com/tpope/vim-fugitive/issues/761
 let g:nremap = {"s": "q"}
 
 
 " gitgutter
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
+nmap <Leader>hj <Plug>(GitGutterNextHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+
 nmap <Leader>hN <Plug>(GitGutterPrevHunk)
+nmap <Leader>hk <Plug>(GitGutterPrevHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
 nmap <Leader>hs <Plug>(GitGutterStageHunk)
 nmap <Leader>hU <Plug>(GitGutterUnstageHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
 
 " -------
 " vim-lsp
 " -------
-nnoremap <silent> <Leader>jd :<C-u>LspDefinition<CR>
-nnoremap <silent> <Leader>hd :<C-u>LspPeekDefinition<CR>
-nnoremap <silent> <Leader>ji :<C-u>LspImplementation<CR>
-nnoremap <silent> <Leader>hi :<C-u>LspPeekImplementation<CR>
+nnoremap <silent> <Leader>jd :LspDefinition<CR>
+nnoremap <silent> <Leader>hd :LspPeekDefinition<CR>
+nnoremap <silent> <Leader>ji :LspImplementation<CR>
+nnoremap <silent> <Leader>hi :LspPeekImplementation<CR>
 nmap <Leader>p <Plug>(Prettier)
 
-nnoremap <silent> <Leader>r :<C-u>LspRename<CR>
-nnoremap <silent> <Leader>R :<C-u>LspReferences<CR>
-nnoremap <silent> <Leader>h :<C-u>LspHover<CR>
-nnoremap <silent> <Leader>f :<C-u>LspDocumentFormat<CR>
+nnoremap <silent> <Leader>r :LspRename<CR>
+nnoremap <silent> <Leader>R :LspReferences<CR>
+nnoremap <silent> <Leader>k :LspHover<CR>
+nnoremap <silent> <Leader>f :LspDocumentFormat<CR>
 
 " e: errors
-nnoremap <silent> <Leader>en :<C-u>LspNextError<CR>
-nnoremap <silent> <Leader>eN :<C-u>LspPreviousError<CR>
+nnoremap <silent> <Leader>en :LspNextError<CR>
+nnoremap <silent> <Leader>eN :LspPreviousError<CR>
 " l: diagnostics
-nnoremap <silent> <Leader>ln :<C-u>LspNextDiagnostic<CR>
-nnoremap <silent> <Leader>lN :<C-u>LspPreviousDiagnostic<CR>
-nnoremap <silent> <Leader>ll :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent> <Leader>ln :LspNextDiagnostic<CR>
+nnoremap <silent> <Leader>lN :LspPreviousDiagnostic<CR>
+nnoremap <silent> <Leader>ll :LspDocumentDiagnostics<CR>
 
 " diagnostics
 let g:lsp_diagnostics_enabled = 1
@@ -159,14 +174,10 @@ highlight LspWarningText ctermfg=255 ctermbg=95
 highlight LspInformationText ctermfg=250 ctermbg=238
 highlight link LspHintText LspInformationText
 
-highlight LspErrorHighlight term=reverse ctermfg=255 ctermbg=89
-highlight LspWarningHighlight term=underline ctermfg=255 ctermbg=6
-highlight LspInformationHighlight term=underline ctermfg=255 ctermbg=6
-highlight LspHintHighlight term=underline ctermfg=255 ctermbg=6
-
-" highlight clear LspWarningLine
-" highlight clear LspInformationLine
-" highlight clear LspHintLine
+highlight LspErrorHighlight cterm=underline
+highlight LspWarningHighlight cterm=underline
+highlight LspInformationHighlight cterm=NONE
+highlight LspHintHighlight cterm=NONE
 
 let g:lsp_log_verbose = 0
 let g:lsp_log_file = expand('~/vim-lsp.log')
