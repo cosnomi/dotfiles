@@ -43,6 +43,8 @@ set pastetoggle=,p
 " faster CursorHold trigger
 set updatetime=1000
 
+set hidden
+
 " Disable default
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>

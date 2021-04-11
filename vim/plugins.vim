@@ -77,6 +77,8 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 " fern
 nnoremap <silent> <Leader>a :Fern . -reveal=% <CR>
+" nnoremap <silent> <Leader>q :Fern %p:h<CR>
+nnoremap <silent> <Leader>q :Fern %:h -reveal=%<CR>
 function! s:init_fern() abort
   nmap <buffer> s <Nop>
 endfunction
@@ -106,10 +108,14 @@ let g:lightline = {}
 let g:lightline.colorscheme = 'iceberg'
 
 " fzf
-nnoremap <Leader>zf :Files<CR>
-nnoremap <Leader>zg :Ag<CR>
-nnoremap <Leader>zm :Marks<CR>
-nnoremap <Leader>zp :Snippets<CR>
+nnoremap zf :Files<CR>
+nnoremap zg :Ag!<CR>
+nnoremap zm :Marks<CR>
+nnoremap zp :Snippets<CR>
+nnoremap zc :Commits!<CR>
+nnoremap zb :Buffers<CR>
+nnoremap zl :Lines<CR>
+nnoremap zk :BLines<CR>
 
 " vim-fugitive (git)
 nnoremap <Leader>gd :Gdiff<CR>
