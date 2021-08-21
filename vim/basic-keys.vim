@@ -35,6 +35,9 @@ nnoremap s= 5<C-w>=
 nnoremap ss :sp<CR><C-w>j
 nnoremap sv :vs<CR><C-w>l
 
+" quickfix
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
 
 " visual mode
 nnoremap <Leader>v <C-v>

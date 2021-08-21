@@ -11,11 +11,10 @@ Plug 'prabirshrestha/vim-lsp' " LSP
 Plug 'prabirshrestha/asyncomplete.vim' " autocompletion
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'yami-beta/asyncomplete-omni.vim' " show html or css autocompletion provided by omni
-Plug 'prettier/vim-prettier', { 'do': 'npm install'  } " formatting for js, html, json, etc
+Plug 'prettier/vim-prettier'
 
 " visual
-Plug 'sheerun/vim-polyglot' " various language syntax
-Plug 'nathanaelkane/vim-indent-guides' " show indent lines
+Plug 'nathanaelkane/vim-indent-guides' " <Leader>ig to show indent lines
 Plug 'itchyny/lightline.vim' " cool status line
 Plug 'popkirby/lightline-iceberg'
 
@@ -47,10 +46,68 @@ Plug 'airblade/vim-rooter'
 " better *
 Plug 'haya14busa/vim-asterisk'
 
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
+" Plug 'dart-lang/dart-vim-plugin'
+" Plug 'thosakwe/vim-flutter'
+
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-replace' " siw to replace the word under the cursor
+
+Plug 'winston0410/mark-radar.nvim'
+
+Plug 'fisadev/vim-isort'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+Plug 'tversteeg/registers.nvim', { 'branch': 'main' } " Show register content
+
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+
+
 
 call plug#end()
+
+let g:pydocstring_formatter = 'numpy'
+" id(insert doc)
+nmap <silent> <Leader>id <Plug>(pydocstring)
+
+nmap <Leader>is ;Isort<CR>
+
+
+" treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
+
+" telescope
+lua <<EOF
+require('telescope').setup {
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
+}
+require('telescope').load_extension('fzy_native')
+EOF
+nnoremap zf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap zg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap z8 <cmd>lua require('telescope.builtin').grep_string()<cr>
+nnoremap zb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap zc <cmd>lua require('telescope.builtin').colorscheme()<cr>
+nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap zz <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 
 "##########
 " color scheme
@@ -72,14 +129,15 @@ let g:indent_guides_guide_size = 1
 "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <C-n>   pumvisible() ? "\<C-n>" : asyncomplete#force_refresh()
-let g:asyncomplete_auto_popup = 1
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" let g:asyncomplete_auto_popup = 1
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 " fern
 nnoremap <silent> <Leader>a :Fern . -reveal=% <CR>
 " nnoremap <silent> <Leader>q :Fern %p:h<CR>
 nnoremap <silent> <Leader>q :Fern %:h -reveal=%<CR>
 function! s:init_fern() abort
+  " Disable s
   nmap <buffer> s <Nop>
 endfunction
 augroup fern-custom
@@ -107,15 +165,18 @@ map g# <Plug>(asterisk-gz#)
 let g:lightline = {}
 let g:lightline.colorscheme = 'iceberg'
 
+" vim-operator-replace
+map s <Plug>(operator-replace)
+
 " fzf
-nnoremap zf :Files<CR>
-nnoremap zg :Ag!<CR>
-nnoremap zm :Marks<CR>
-nnoremap zp :Snippets<CR>
-nnoremap zc :Commits!<CR>
-nnoremap zb :Buffers<CR>
-nnoremap zl :Lines<CR>
-nnoremap zk :BLines<CR>
+" nnoremap zf :Files<CR>
+" nnoremap zg :Ag<CR>
+" nnoremap zm :Marks<CR>
+" nnoremap zp :Snippets<CR>
+" nnoremap zc :Commits!<CR>
+" nnoremap zb :Buffers<CR>
+" nnoremap zl :Lines<CR>
+" nnoremap zk :BLines<CR>
 
 " vim-fugitive (git)
 nnoremap <Leader>gd :Gdiff<CR>
@@ -152,8 +213,8 @@ nnoremap <silent> <Leader>ji :LspImplementation<CR>
 nnoremap <silent> <Leader>hi :LspPeekImplementation<CR>
 nmap <Leader>p <Plug>(Prettier)
 
-nnoremap <silent> <Leader>r :LspRename<CR>
-nnoremap <silent> <Leader>R :LspReferences<CR>
+nnoremap <silent> <Leader>rn :LspRename<CR>
+nnoremap <silent> <Leader>re :LspReferences<CR>
 nnoremap <silent> <Leader>k :LspHover<CR>
 nnoremap <silent> <Leader>f :LspDocumentFormat<CR>
 

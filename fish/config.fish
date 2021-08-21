@@ -1,6 +1,8 @@
-set -g theme_display_git_master_branch no
+set -g theme_newline_cursor no
+set -g theme_display_git_master_branch yes
 set -g theme_display_date no
-set -g theme_display_cmd_duration no
+set -g theme_color_scheme zenburn
+set -g theme_display_cmd_duration yes
 
 set -x EDITOR nvim
 
@@ -23,8 +25,11 @@ abbr vimrc nvim ~/.config/nvim/init.vim
 
 abbr .. cd ..
 abbr ..2 cd ../..
-abbr ..3 cd ../../..
+abbr ... cd ../..
+abbr .... cd ../../..
 
 # Change tmux prefix to avoid conflict in case of nested tmux
 alias tmux-chkey='tmux set-option -ag prefix C-b'
 alias tmux-revkey='tmux set-option -ag prefix C-s'
+
+set -x FZF_LEGACY_KEYBINDINGS 0
