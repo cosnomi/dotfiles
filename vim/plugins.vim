@@ -5,13 +5,6 @@
 call plug#begin()
 " colorscheme
 Plug 'cocopon/iceberg.vim', { 'do': 'cp colors/* ~/.vim/colors/'  }
-" language support
-Plug 'prabirshrestha/vim-lsp' " LSP
-"Plug 'mattn/vim-lsp-settings' " configure vim-lsp automatically
-Plug 'prabirshrestha/asyncomplete.vim' " autocompletion
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'yami-beta/asyncomplete-omni.vim' " show html or css autocompletion provided by omni
-Plug 'prettier/vim-prettier'
 
 " visual
 Plug 'nathanaelkane/vim-indent-guides' " <Leader>ig to show indent lines
@@ -63,10 +56,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 Plug 'tversteeg/registers.nvim', { 'branch': 'main' } " Show register content
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
+
+" Python
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
-
-
 
 call plug#end()
 
@@ -89,31 +84,28 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " telescope
-lua <<EOF
-require('telescope').setup {
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        }
-    }
-}
-require('telescope').load_extension('fzy_native')
-EOF
 nnoremap zf <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap zg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap z8 <cmd>lua require('telescope.builtin').grep_string()<cr>
 nnoremap zb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap zc <cmd>lua require('telescope.builtin').colorscheme()<cr>
 nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
-nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
-nnoremap zz <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap zk <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+
+lua require('lsp_settings')
+lua require('telescope_settings')
 
 "##########
 " color scheme
 "##########
 set t_Co=256
 colorscheme iceberg
+" transparency
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none 
 
 " rainbow bracket
 let g:rainbow_active = 1
@@ -204,47 +196,19 @@ nmap <Leader>hs <Plug>(GitGutterStageHunk)
 nmap <Leader>hU <Plug>(GitGutterUnstageHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 
-" -------
-" vim-lsp
-" -------
-nnoremap <silent> <Leader>jd :LspDefinition<CR>
-nnoremap <silent> <Leader>hd :LspPeekDefinition<CR>
-nnoremap <silent> <Leader>ji :LspImplementation<CR>
-nnoremap <silent> <Leader>hi :LspPeekImplementation<CR>
-nmap <Leader>p <Plug>(Prettier)
+" nvim-lsp
+highlight LspDiagnosticsVirtualTextInformation ctermfg=250 ctermbg=238
+highlight link LspDiagnosticsVirtualTextHint LspDiagnosticsVirtualTextInformation
+highlight LspDiagnosticsVirtualTextWarning ctermfg=255 ctermbg=95
+highlight LspDiagnosticsVirtualTextError ctermfg=255 ctermbg=89
 
-nnoremap <silent> <Leader>rn :LspRename<CR>
-nnoremap <silent> <Leader>re :LspReferences<CR>
-nnoremap <silent> <Leader>k :LspHover<CR>
-nnoremap <silent> <Leader>f :LspDocumentFormat<CR>
+" highlight LspErrorHighlight cterm=underline
+sign define LspDiagnosticsSignError text=E texthl=LspDiagnosticsVirtualTextError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=W texthl=LspDiagnosticsVirtualTextWarning linehl= numhl=
+" highlight LspWarningHighlight cterm=underline
+"
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
 
-" e: errors
-nnoremap <silent> <Leader>en :LspNextError<CR>
-nnoremap <silent> <Leader>eN :LspPreviousError<CR>
-" l: diagnostics
-nnoremap <silent> <Leader>ln :LspNextDiagnostic<CR>
-nnoremap <silent> <Leader>lN :LspPreviousDiagnostic<CR>
-nnoremap <silent> <Leader>ll :LspDocumentDiagnostics<CR>
-
-" diagnostics
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-let g:lsp_textprop_enabled = 0
-let g:lsp_virtual_text_enabled = 1
-let g:lsp_highlights_enabled = 0
-
-let g:lsp_signs_error = {'text': 'E>'}
-let g:lsp_signs_warning = {'text': 'W>'}
-
-highlight LspErrorText ctermfg=255 ctermbg=89
-highlight LspWarningText ctermfg=255 ctermbg=95
-highlight LspInformationText ctermfg=250 ctermbg=238
-highlight link LspHintText LspInformationText
-
-highlight LspErrorHighlight cterm=underline
-highlight LspWarningHighlight cterm=underline
-highlight LspInformationHighlight cterm=NONE
-highlight LspHintHighlight cterm=NONE
-
-let g:lsp_log_verbose = 0
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" Avoid showing message extra message when using completion
+set shortmess+=c

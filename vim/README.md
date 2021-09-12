@@ -14,3 +14,10 @@ When some config files are updated, run
 git pull
 ./deploy.sh
 ```
+
+## LSP
+### Python
+- npm i -g pyright
+- pip install yapf pylint
+
+### 

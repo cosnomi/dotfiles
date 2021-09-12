@@ -11,6 +11,10 @@ do
     ln -snf $THISPATH/$file.vim ~/.config/nvim/$file.vim
 done
 
+ln -snf $THISPATH/lua ~/.config/nvim/lua
+mkdir -p ~/.config/efm-langserver
+ln -snf $THISPATH/efm-langserver.yaml $HOME/.config/efm-langserver/config.yaml
+
 if [ -f ~/.vim/autoload/plug.vim ]; then
     echo "Installing vim plugins"
     # vim +'PlugInstall --sync' +qa
