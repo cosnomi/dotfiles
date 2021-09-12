@@ -5,7 +5,7 @@ cd $THISPATH
 echo "Setting up neovim"
 mkdir -p $HOME/AppImage
 cd $HOME/AppImage
-curl -L -o ./nvim.appimage "https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x ./nvim.appimage
 ./nvim.appimage --appimage-extract > /dev/null
 mv squashfs-root neovim-root
