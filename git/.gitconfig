@@ -10,6 +10,7 @@
     co = checkout
     cancel = reset --soft HEAD^
     unstage = reset HEAD
+    discard = checkout HEAD --
 
     cm = commit
     cma = commit -a
@@ -20,4 +21,4 @@
     amend = commit --amend
     forcepush = push --force-with-lease
 [gpg]
-  	program = gpg
+    program = gpg
