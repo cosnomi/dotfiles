@@ -47,8 +47,6 @@ Plug 'kana/vim-operator-replace' " siw to replace the word under the cursor
 
 Plug 'winston0410/mark-radar.nvim'
 
-Plug 'fisadev/vim-isort'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-lua/plenary.nvim'
@@ -68,8 +66,6 @@ call plug#end()
 let g:pydocstring_formatter = 'numpy'
 " id(insert doc)
 nmap <silent> <Leader>id <Plug>(pydocstring)
-
-nmap <Leader>is ;Isort<CR>
 
 
 " treesitter
