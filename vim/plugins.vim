@@ -5,6 +5,7 @@
 call plug#begin()
 " colorscheme
 Plug 'cocopon/iceberg.vim', { 'do': 'cp colors/* ~/.vim/colors/'  }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " visual
 Plug 'nathanaelkane/vim-indent-guides' " <Leader>ig to show indent lines
@@ -95,7 +96,9 @@ lua require('telescope_settings')
 " color scheme
 "##########
 set t_Co=256
-colorscheme iceberg
+let g:tokyonight_transparent = 1
+let g:tokyonight_style = "storm"
+colorscheme tokyonight
 " transparency
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -150,8 +153,9 @@ map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 
 " lightline
-let g:lightline = {}
-let g:lightline.colorscheme = 'iceberg'
+" let g:lightline = {}
+" let g:lightline.colorscheme = 'iceberg'
+let g:lightline = {'colorscheme': 'tokyonight'}
 
 " vim-operator-replace
 map s <Plug>(operator-replace)
