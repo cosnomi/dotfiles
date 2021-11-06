@@ -7,7 +7,7 @@ set -g theme_display_cmd_duration yes
 set -x EDITOR nvim
 
 set GOPATH ~/go
-set PATH $HOME/bin $GOPATH/bin $PATH
+set PATH $HOME/bin /usr/local/go/bin $GOPATH/bin ~/.local/bin $PATH
 
 set -x GPG_TTY (tty)
 
