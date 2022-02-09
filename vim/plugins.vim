@@ -172,8 +172,8 @@ map s <Plug>(operator-replace)
 
 " vim-fugitive (git)
 nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gs :Git<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gm :Gmerge<CR>
 nnoremap <Leader>gh :0Gllog<CR>
