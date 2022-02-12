@@ -40,13 +40,11 @@ Plug 'airblade/vim-rooter'
 " better *
 Plug 'haya14busa/vim-asterisk'
 
-" Plug 'dart-lang/dart-vim-plugin'
-" Plug 'thosakwe/vim-flutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'akinsho/flutter-tools.nvim'
 
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace' " siw to replace the word under the cursor
-
-Plug 'winston0410/mark-radar.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
@@ -55,8 +53,20 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 Plug 'tversteeg/registers.nvim', { 'branch': 'main' } " Show register content
+
+" LSP and auto-completion
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 
 " Python
@@ -69,17 +79,6 @@ let g:pydocstring_formatter = 'numpy'
 nmap <silent> <Leader>id <Plug>(pydocstring)
 
 
-" treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-  },
-}
-EOF
-
 " telescope
 nnoremap zf <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap zg <cmd>lua require('telescope.builtin').live_grep()<cr>
@@ -88,9 +87,6 @@ nnoremap zb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap zc <cmd>lua require('telescope.builtin').colorscheme()<cr>
 nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap zk <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-
-lua require('lsp_settings')
-lua require('telescope_settings')
 
 "##########
 " color scheme
@@ -212,3 +208,32 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+
+" snip
+" NOTE: You can use other key to expand snippet.
+
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
+
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
