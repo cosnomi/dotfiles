@@ -13,7 +13,6 @@ Plug 'itchyny/lightline.vim' " cool status line
 Plug 'popkirby/lightline-iceberg'
 
 " parentheses
-Plug 'luochen1990/rainbow' " show matching parentheses
 "Plug 'jiangmiao/auto-pairs' " insert closing parenthesis automatically
 Plug 'tpope/vim-surround' " edit parentheses easily
 Plug 'tpope/vim-repeat' " allow repeat plugin commands
@@ -48,6 +47,7 @@ Plug 'kana/vim-operator-replace' " siw to replace the word under the cursor
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -68,9 +68,11 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Python
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+
 
 call plug#end()
 
@@ -93,9 +95,6 @@ highlight NonText ctermbg=none
 highlight LineNr ctermbg=none
 highlight Folded ctermbg=none
 highlight EndOfBuffer ctermbg=none 
-
-" rainbow bracket
-let g:rainbow_active = 1
 
 " indent-guides
 " <Leader>ig to toggle plugin

@@ -2,6 +2,8 @@
 "# Visual #
 "##########
 syntax enable
+set termguicolors
+
 " line
 set cursorline
 set number
