@@ -109,11 +109,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-nvim_lsp.efm.setup{
-  on_attach = on_attach,
-  filetypes = { 'python', 'yaml' },
-  default_config = {
-    cmd = { 'efm-langserver', '-c', '~/.config/efm-langserver/config.yaml' };
-  },
-  capabilities = capabilities
-}
+-- nvim_lsp.efm.setup{
+--   on_attach = on_attach,
+--   filetypes = { 'python', 'yaml' },
+--   default_config = {
+--     cmd = { 'efm-langserver', '-c', '~/.config/efm-langserver/config.yaml' };
+--   },
+--   capabilities = capabilities
+-- }
