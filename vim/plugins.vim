@@ -79,14 +79,6 @@ let g:pydocstring_formatter = 'numpy'
 nmap <silent> <Leader>id <Plug>(pydocstring)
 
 
-" telescope
-nnoremap zf <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap zg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap z8 <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap zb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap zc <cmd>lua require('telescope.builtin').colorscheme()<cr>
-nnoremap zp <cmd>lua require('telescope.builtin').registers()<cr>
-nnoremap zk <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 
 "##########
 " color scheme
