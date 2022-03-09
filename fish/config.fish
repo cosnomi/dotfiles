@@ -17,6 +17,7 @@ abbr tat tmux a -t
 
 abbr ga git add
 abbr gs git status
+abbr gps git push --set-upstream origin
 
 abbr lh ls -lh
 abbr lha ls -lha
