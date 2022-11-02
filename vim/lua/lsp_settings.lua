@@ -114,3 +114,7 @@ end
 --   },
 --   capabilities = capabilities
 -- }
+
+require("flutter-tools").setup {
+  fvm = true,
+}
