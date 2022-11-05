@@ -22,3 +22,5 @@
     forcepush = push --force-with-lease
 [gpg]
     program = gpg
+[diff]
+    algorithm = histogram

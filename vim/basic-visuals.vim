@@ -51,3 +51,5 @@ set nrformats=
 " customize comment and visual for visibility
 " hi Comment ctermfg=102
 " hi Visual  ctermbg=236
+
+set diffopt=internal,filler,algorithm:histogram,indent-heuristic
