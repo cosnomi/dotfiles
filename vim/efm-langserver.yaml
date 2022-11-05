@@ -1,4 +1,6 @@
 version: 2
+root-markers:
+  - .git/
 lint-debounce: 1s
 tools:
   # python-flake8: &python-flake8
@@ -31,6 +33,17 @@ tools:
     lint-stdin: true
   yaml-prettier: &yaml-prettier
     format-command: "npx prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser yaml"
+  markdown-textlint: &markdown-textlint
+    lint-command: 'npx textlint --format unix ${INPUT}'
+    lint-formats:
+      - '%f:%l:%n: %m'
+    # lint-command: 'npx --no-install textlint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    # lint-formats:
+      # - '%f:%l:%c: %m [%trror/%r]'
+    root-markers:
+      - .textlintrc
 
 languages:
   python:
@@ -41,3 +54,5 @@ languages:
   yaml:
     - <<: *yaml-yamllint
     - <<: *yaml-prettier
+  markdown:
+    - <<: *markdown-textlint
