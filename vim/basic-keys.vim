@@ -39,6 +39,10 @@ nnoremap sv :vs<CR><C-w>l
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 
+" location list
+nmap <silent> [l :Lprev<CR>zv
+nmap <silent> ]l :Lnext<CR>zv
+
 " visual mode
 nnoremap <Leader>v <C-v>
 set pastetoggle=,p
