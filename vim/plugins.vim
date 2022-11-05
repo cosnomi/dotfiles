@@ -4,8 +4,9 @@
 
 call plug#begin()
 " colorscheme
-Plug 'cocopon/iceberg.vim', { 'do': 'cp colors/* ~/.vim/colors/'  }
+Plug 'cocopon/iceberg.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'arcticicestudio/nord-vim'
 
 " visual
 Plug 'nathanaelkane/vim-indent-guides' " <Leader>ig to show indent lines
@@ -31,7 +32,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " smooth scroll
-Plug 'yuttie/comfortable-motion.vim'
+" Plug 'yuttie/comfortable-motion.vim'
+
 " extended f
 Plug 'rhysd/clever-f.vim'
 " project
@@ -73,10 +75,13 @@ Plug 'norcalli/nvim-colorizer.lua'
 " Python
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 
+Plug 'github/copilot.vim'
+
 
 call plug#end()
 
 let g:pydocstring_formatter = 'numpy'
+
 " id(insert doc)
 nmap <silent> <Leader>id <Plug>(pydocstring)
 
@@ -87,8 +92,10 @@ nmap <silent> <Leader>id <Plug>(pydocstring)
 "##########
 set t_Co=256
 let g:tokyonight_transparent = 1
-let g:tokyonight_style = "storm"
-colorscheme tokyonight
+let g:tokyonight_style = "night"
+" colorscheme tokyonight
+colorscheme iceberg
+" colorscheme nord
 " transparency
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -141,8 +148,7 @@ map g# <Plug>(asterisk-gz#)
 
 " lightline
 " let g:lightline = {}
-" let g:lightline.colorscheme = 'iceberg'
-let g:lightline = {'colorscheme': 'tokyonight'}
+let g:lightline = {'colorscheme': 'iceberg'}
 
 " vim-operator-replace
 map s <Plug>(operator-replace)
